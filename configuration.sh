@@ -32,7 +32,8 @@ ARMBIAN_MAINLINE_KERNEL_VERSION='4.7'
 MAINLINE_KERNEL_BRANCH=tag:v$(wget -qO- https://www.kernel.org/finger_banner | awk '{print $NF}' | grep -oE "^${ARMBIAN_MAINLINE_KERNEL_VERSION//./\\.}\.?[[:digit:]]*")
 MAINLINE_KERNEL_DIR='linux-vanilla'
 
-MAINLINE_UBOOT_SOURCE='git://git.denx.de/u-boot.git'
+MAINLINE_UBOOT_SOURCE='https://github.com/RobertCNelson/u-boot.git'
+#MAINLINE_UBOOT_SOURCE='git://git.denx.de/u-boot.git'
 #MAINLINE_UBOOT_BRANCH="v$(git ls-remote git://git.denx.de/u-boot.git | grep -v rc | grep -v '\^' | tail -1 | cut -d'v' -f 2)"
 MAINLINE_UBOOT_BRANCH='tag:v2016.09'
 MAINLINE_UBOOT_DIR='u-boot'

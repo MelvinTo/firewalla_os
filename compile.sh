@@ -13,7 +13,13 @@
 # Read build script documentation http://www.armbian.com/using-armbian-tools/
 # for detailed explanation of these options and for additional options not listed here
 
-KERNEL_ONLY=""				# leave empty to select each time, set to "yes" or "no" to skip dialog prompt
+BUILD_DESKTOP="no"
+BOARD="nanopineo"
+BRANCH="default"
+RELEASE="xenial"
+KERNEL_ONLY="yes"				# leave empty to select each time, set to "yes" or "no" to skip dialog prompt
+USE_GITHUB_UBOOT_MIRROR="yes"
+NO_APT_CACHER="yes"
 KERNEL_CONFIGURE="no"			# change provided kernel configuration
 CLEAN_LEVEL="make,debs"			# comma-separated list of clean targets: "make" = make clean for selected kernel and u-boot,
 					# "debs" = delete packages in "./output/debs" for current branch and family,
