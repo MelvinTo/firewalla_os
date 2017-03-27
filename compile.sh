@@ -13,6 +13,12 @@
 # Read build script documentation http://www.armbian.com/using-armbian-tools/
 # for detailed explanation of these options and for additional options not listed here
 
+BUILD_DESKTOP="no"
+BOARD="nanopineo"
+RELEASE="xenial"
+USE_GITHUB_UBOOT_MIRROR="yes"
+NO_APT_CACHER="yes"
+
 KERNEL_ONLY=""				# leave empty to select each time, set to "yes" or "no" to skip dialog prompt
 KERNEL_CONFIGURE="no"			# change provided kernel configuration
 CLEAN_LEVEL="make,debs,oldcache"	# comma-separated list of clean targets: "make" = make clean for selected kernel and u-boot,
@@ -27,7 +33,7 @@ DEST_LANG="en_US.UTF-8"			# sl_SI.UTF-8, en_US.UTF-8
 KERNEL_KEEP_CONFIG="no"			# do not overwrite kernel config before compilation
 EXTERNAL="yes"				# build and install extra applications and drivers
 EXTERNAL_NEW="prebuilt"			# compile and install or install prebuilt additional packages
-CREATE_PATCHES="no"			# wait that you make changes to uboot and kernel source and creates patches
+CREATE_PATCHES="yes"			# wait that you make changes to uboot and kernel source and creates patches
 FORCE_CHECKOUT="yes"			# ignore manual changes to source
 BUILD_ALL="no"				# cycle through available boards and make images or kernel/u-boot packages.
 					# set KERNEL_ONLY to "yes" or "no" to build all packages/all images
