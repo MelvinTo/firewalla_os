@@ -565,7 +565,7 @@ process_patch_file()
 
 	if [[ $? -ne 0 ]]; then
 		display_alert "* $status $(basename $patch)" "failed" "wrn"
-		[[ $EXIT_PATCHING_ERROR == yes ]] && exit_with_error "Aborting due to" "EXIT_PATCHING_ERROR"
+		exit_with_error "Aborting due to" "EXIT_PATCHING_ERROR"
 	else
 		display_alert "* $status $(basename $patch)" "" "info"
 	fi

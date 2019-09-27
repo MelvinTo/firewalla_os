@@ -1,0 +1,150 @@
+From 1281035d8f82fd022a58486e54e1e0e4e5b26032 Mon Sep 17 00:00:00 2001
+From: wuweidong <625769020@qq.com>
+Date: Fri, 27 Sep 2019 13:17:06 +0800
+Subject: [PATCH] neo2 black: tweak dvfs
+
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi | 71 +++++---------------
+ 1 file changed, 15 insertions(+), 56 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+index 25bf865e..6d3558f4 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+@@ -48,9 +48,9 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp@408000000 {
+-			opp-hz = /bits/ 64 <408000000>;
+-			opp-microvolt = <1000000 1000000 1300000>;
++		opp@480000000 {
++			opp-hz = /bits/ 64 <480000000>;
++			opp-microvolt = <1040000 1040000 1300000>;
+ 			clock-latency-ns = <244144>; /* 8 32k periods */
+ 		};
+ 
+@@ -62,42 +62,18 @@
+ 
+ 		opp@816000000 {
+ 			opp-hz = /bits/ 64 <816000000>;
+-			opp-microvolt = <1080000 1080000 1300000>;
++			opp-microvolt = <1100000 1100000 1300000>;
+ 			clock-latency-ns = <244144>; /* 8 32k periods */
+ 		};
+ 
+-		opp@912000000 {
+-		       opp-hz = /bits/ 64 <912000000>;
+-		       opp-microvolt = <1120000 1120000 1300000>;
+-		       clock-latency-ns = <244144>; /* 8 32k periods */
+-		};
+-
+-		opp@960000000 {
+-		       opp-hz = /bits/ 64 <960000000>;
+-		       opp-microvolt = <1160000 1160000 1300000>;
+-		       clock-latency-ns = <244144>; /* 8 32k periods */
+-		};
+-
+ 		opp@1008000000 {
+ 		       opp-hz = /bits/ 64 <1008000000>;
+-		       opp-microvolt = <1200000 1200000 1300000>;
++		       opp-microvolt = <1100000 1100000 1300000>;
+ 		       clock-latency-ns = <244144>; /* 8 32k periods */
+ 		};
+ 
+-		opp@1056000000 {
+-		       opp-hz = /bits/ 64 <1056000000>;
+-		       opp-microvolt = <1240000 1240000 1300000>;
+-		       clock-latency-ns = <244144>; /* 8 32k periods */
+-		};
+-
+-		opp@1104000000 {
+-		       opp-hz = /bits/ 64 <1104000000>;
+-		       opp-microvolt = <1260000 1260000 1300000>;
+-		       clock-latency-ns = <244144>; /* 8 32k periods */
+-		};
+-
+-		opp@1152000000 {
+-		       opp-hz = /bits/ 64 <1152000000>;
++		opp@1248000000 {
++		       opp-hz = /bits/ 64 <1248000000>;
+ 		       opp-microvolt = <1300000 1300000 1300000>;
+ 		       clock-latency-ns = <244144>; /* 8 32k periods */
+ 		};
+@@ -176,37 +152,25 @@
+ 
+ 			trips {
+ 				cpu_warm: cpu_warm {
+-					temperature = <65000>;
+-					hysteresis = <2000>;
+-					type = "passive";
+-				};
+-
+-				cpu_hot_pre: cpu_hot_pre {
+-					temperature = <70000>;
++					temperature = <60000>;
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+ 
+ 				cpu_hot: cpu_hot {
+-					temperature = <75000>;
+-					hysteresis = <2000>;
+-					type = "passive";
+-				};
+-
+-				cpu_very_hot_pre: cpu_very_hot_pre {
+-					temperature = <85000>;
++					temperature = <70000>;
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+ 
+ 				cpu_very_hot: cpu_very_hot {
+-					temperature = <90000>;
++					temperature = <80000>;
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+ 
+ 				cpu_crit: cpu_crit {
+-					temperature = <105000>;
++					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+@@ -215,27 +179,22 @@
+ 			cooling-maps {
+ 				cpu_warm_limit_cpu {
+ 					trip = <&cpu_warm>;
+-					cooling-device = <&cpu0 THERMAL_NO_LIMIT 2>;
+-				};
+-
+-				cpu_hot_pre_limit_cpu {
+-					trip = <&cpu_hot_pre>;
+-					cooling-device = <&cpu0 2 3>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT 1>;
+ 				};
+ 
+ 				cpu_hot_limit_cpu {
+ 					trip = <&cpu_hot>;
+-					cooling-device = <&cpu0 3 4>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT 2>;
+ 				};
+ 
+ 				cpu_very_hot_pre_limit_cpu {
+ 					trip = <&cpu_very_hot>;
+-					cooling-device = <&cpu0 5 6>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT 3>;
+ 				};
+ 
+ 				cpu_very_hot_limit_cpu {
+ 					trip = <&cpu_very_hot>;
+-					cooling-device = <&cpu0 7 THERMAL_NO_LIMIT>;
++					cooling-device = <&cpu0 4 THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 		};
+-- 
+2.23.0
+
